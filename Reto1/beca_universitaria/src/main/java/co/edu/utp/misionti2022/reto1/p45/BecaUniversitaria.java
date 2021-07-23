@@ -4,7 +4,7 @@ public class BecaUniversitaria {
     // Atributos
     private int tiempo;
     private double monto;
-    private double interes; 
+    private double interes;
 
     // Constructores
     BecaUniversitaria() {
@@ -38,20 +38,13 @@ public class BecaUniversitaria {
         this.tiempo = pTiempo;
         this.monto = pMonto;
         this.interes = pInteres;
-        String output = "";
-        double diferencia = calcularInteresCompuesto() - calcularInteresSimple();
-        if (diferencia == 0) {
-            output = "No se obtuvo diferencia entre las proyecciones, revisar los parámetros de entrada.";
-        } else {
-            output = "La diferencia entre la proyección de interés compuesto e interés simple es: $" + diferencia;
-        }
-        return output;
+
+        return this.compararInversion();
     }
 
     public String compararInversion() {
-
-        double diferencia = calcularInteresCompuesto() - calcularInteresSimple();
         String output = "";
+        double diferencia = calcularInteresCompuesto() - calcularInteresSimple();
         if (diferencia == 0) {
             output = "No se obtuvo diferencia entre las proyecciones, revisar los parámetros de entrada.";
         } else {
@@ -59,28 +52,24 @@ public class BecaUniversitaria {
         }
         return output;
     }
-}
 
+    public static void main(String[] args) {
 
+        BecaUniversitaria becaU3 = new BecaUniversitaria();
+        System.out.println(becaU3.calcularInteresSimple());
+        System.out.println(becaU3.calcularInteresCompuesto());
+        System.out.println(becaU3.compararInversion());
 
+        BecaUniversitaria becaU4 = new BecaUniversitaria(48, 10000, 2.0);
+        System.out.println(becaU4.calcularInteresSimple());
+        System.out.println(becaU4.calcularInteresCompuesto());
+        System.out.println(becaU4.compararInversion());
 
+        BecaUniversitaria becaU5 = new BecaUniversitaria();
+        System.out.println(becaU5.calcularInteresSimple());
+        System.out.println(becaU5.calcularInteresCompuesto());
+        System.out.println(becaU5.compararInversion(60, 13000, 1.4));
 
-
-public static void main(String[] args) {
-
-    BecaUniversitaria becaU3 = new BecaUniversitaria();
-    System.out.println(becaU3.calcularInteresSimple());
-    System.out.println(becaU3.calcularInteresCompuesto());
-    System.out.println(becaU3.compararInversion());
-
-    BecaUniversitaria becaU4 = new BecaUniversitaria(48, 10000, 2.0);
-    System.out.println(becaU4.calcularInteresSimple());
-    System.out.println(becaU4.calcularInteresCompuesto());
-    System.out.println(becaU4.compararInversion());
-
-    BecaUniversitaria becaU5 = new BecaUniversitaria();
-    System.out.println(becaU5.calcularInteresSimple());
-    System.out.println(becaU5.calcularInteresCompuesto());
-    System.out.println(becaU5.compararInversion(60, 13000, 1.4));
+    }
 
 }
