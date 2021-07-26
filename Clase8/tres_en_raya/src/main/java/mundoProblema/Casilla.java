@@ -27,8 +27,8 @@ public class Casilla {
 
     // Metodos - comportaminento
     public void aplicarJugada(int pValorLogico, String pValorConsola) {
-        this.valorLogico = pvalorLogico;
-        this.valorConsola = pvalorConsola;
+        this.valorLogico = pValorLogico;
+        this.valorConsola = pValorConsola;
         this.libre = false;
     }
 
@@ -41,7 +41,7 @@ public class Casilla {
         return fila;
     }
 
-    public int getLibre() {
+    public boolean getLibre() {
         return libre;
     }
 
@@ -56,5 +56,25 @@ public class Casilla {
 
     public void setFila(int fila) {
         this.fila = fila;
+    }
+
+    // Getters
+    public String getValorConsola() {
+        return valorConsola;
+    }
+
+    @Override
+    public String toString() {
+        String infoCasilla = "";
+
+        infoCasilla += "\n---InfoCasilla---\n";
+        infoCasilla += "Fila: " + this.fila + "\n";
+        infoCasilla += "Columna: " + this.columna + "\n";
+        String mensajeLibre = this.libre ? "Si" : "No";
+        return infoCasilla += "Libre: " + mensajeLibre + "\n";
+
+        // If you type toString, it will autogerate the override, and the default
+        // return es return super.toString(); que se puede cambiar asi como arriba
+        // de la clase de donde heredo por eso se llama la super clase
     }
 }
