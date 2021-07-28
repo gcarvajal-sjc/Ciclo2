@@ -27,10 +27,26 @@ public class App {
         // System.out.println(tablero.casillas[0][0].toString());
         // System.out.println(tablero.casillas[0][1].toString());
 
-        // Poner a trabajar la version automatica del jugadorX
+        // // Poner a trabajar la version automatica del jugadorX
+        // JugadorX jugadorX = new JugadorX("Negruki", 10, "X");
+        // JugadorO jugadorO = new JugadorO("Bbtoddy", 1, "O");
+        // jugadorX.ejecutarEstrategiaAleatoria(tablero);
+        // jugadorO.ejecutarEstrategiaAleatoria(tablero);
+        // jugadorX.ejecutarEstrategiaEspecifica(tablero);
+        // jugadorO.ejecutarEstrategiaEspecifica(tablero);
+
+        // Forzar el alternado de turnos con jugadores asistidos por la maquina
+
         JugadorX jugadorX = new JugadorX("Negruki", 10, "X");
-        jugadorX.ejecutarEstrategiaAleatoria(tablero);
+        JugadorO jugadorO = new JugadorO("Bbtoddy", 1, "O");
+        jugadorO.ejecutarEstrategiaEspecifica(tablero);
+        tablero.mostrarTableroConsola();
         jugadorX.ejecutarEstrategiaEspecifica(tablero);
+        tablero.mostrarTableroConsola();
+        jugadorO.realizarManual(tablero);
+        tablero.mostrarTableroConsola();
+        jugadorX.realizarManual(tablero);
+        tablero.mostrarTableroConsola();
 
         // Revisar el tablero despues de movimientos automaticos del jugadorX
         System.out.println("Despues de realizar movimientos");

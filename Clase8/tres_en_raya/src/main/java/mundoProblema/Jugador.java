@@ -1,6 +1,7 @@
 package mundoProblema;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class Jugador {
 
@@ -43,6 +44,20 @@ public abstract class Jugador {
         int columnaCasilla = casillaElegida.getColumna();
         // El jugador actualiza el tablero en virtud de las casillas
         tablero.casillas[filaCasilla][columnaCasilla].aplicarJugada(this.movimientoLogico, this.movimientoConsola);
+    }
+
+    // Realizar jugada manual
+    public void realizarManual(Tablero tablero) {
+        // Solicitar fila y columna al usuario
+        Scanner sc = new Scanner(System.in);
+        System.out.println();
+        System.out.println("Turno Jugador: " + this.nombreJugador + "Simbolo: " + this.movimientoConsola);
+        System.out.println("Ingrese la fila");
+        int filaManual = sc.nextInt();
+        System.out.println("Ingrese la columna");
+        int columnaManual = sc.nextInt();
+        // El jugador actualiza el tablero en virtud de las casillas
+        tablero.casillas[filaManual][columnaManual].aplicarJugada(this.movimientoLogico, this.movimientoConsola);
     }
 
     // Ejecutar estrategia puramente aleatoria
