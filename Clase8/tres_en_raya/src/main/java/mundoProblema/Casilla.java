@@ -63,6 +63,10 @@ public class Casilla {
         return valorConsola;
     }
 
+    public int getValorLogico() {
+        return valorLogico;
+    }
+
     @Override
     public String toString() {
         String infoCasilla = "";

@@ -7,10 +7,10 @@ package mundoProblema;
 public class App {
     public static void main(String[] args) {
         System.out.println("Tres en Raya");
-        // Probar la construccion del tablero
-        Tablero tablero = new Tablero();
-        System.out.println("Antes de realizar movimientos");
-        tablero.mostrarTableroConsola();
+        // // Probar la construccion del tablero
+        // Tablero tablero = new Tablero();
+        // System.out.println("Antes de realizar movimientos");
+        // tablero.mostrarTableroConsola();
 
         // //Forzar unas jugadas probando el comportamiento de las casillas del tablero
         // tablero.casillas[0][1].aplicarJugada(10, "X");
@@ -35,22 +35,25 @@ public class App {
         // jugadorX.ejecutarEstrategiaEspecifica(tablero);
         // jugadorO.ejecutarEstrategiaEspecifica(tablero);
 
-        // Forzar el alternado de turnos con jugadores asistidos por la maquina
+        // // Forzar el alternado de turnos con jugadores asistidos por la maquina
 
-        JugadorX jugadorX = new JugadorX("Negruki", 10, "X");
-        JugadorO jugadorO = new JugadorO("Bbtoddy", 1, "O");
-        jugadorO.ejecutarEstrategiaEspecifica(tablero);
-        tablero.mostrarTableroConsola();
-        jugadorX.ejecutarEstrategiaEspecifica(tablero);
-        tablero.mostrarTableroConsola();
-        jugadorO.realizarManual(tablero);
-        tablero.mostrarTableroConsola();
-        jugadorX.realizarManual(tablero);
-        tablero.mostrarTableroConsola();
+        // JugadorX jugadorX = new JugadorX("Negruki", 10, "X");
+        // JugadorO jugadorO = new JugadorO("Bbtoddy", 1, "O");
+        // jugadorO.ejecutarEstrategiaEspecifica(tablero);
+        // tablero.mostrarTableroConsola();
+        // jugadorX.ejecutarEstrategiaEspecifica(tablero);
+        // tablero.mostrarTableroConsola();
+        // jugadorO.realizarManual(tablero);
+        // tablero.mostrarTableroConsola();
+        // jugadorX.realizarManual(tablero);
+        // tablero.mostrarTableroConsola();
 
-        // Revisar el tablero despues de movimientos automaticos del jugadorX
-        System.out.println("Despues de realizar movimientos");
-        tablero.mostrarTableroConsola();
+        // // Revisar el tablero despues de movimientos automaticos del jugadorX
+        // System.out.println("Despues de realizar movimientos");
+        // tablero.mostrarTableroConsola();
 
+        // Crear el Juego
+        Juego juego = new Juego("Negruki", "Bbtoddy");
+        juego.ejecutarJuego();
     }
 }
