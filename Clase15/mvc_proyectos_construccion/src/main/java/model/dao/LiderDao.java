@@ -40,6 +40,8 @@ public class LiderDao {
             PreparedStatement statement = conexion.prepareStatement("SELECT * FROM Lider;");
             ResultSet resultSet = statement.executeQuery(); // ejecuta el query y devuelve el contenedor
 
+            // Recorrer estilo iterador la estructura de datos que aloja los registros
+            // Se detiene cuando siguiente retorna falso!
             while (resultSet.next()) {
                 // Mientras resultset tenga algo vamos a sacar c/u de los elementos
                 // next retorna un valor y por c/u de ellos creamos un lider VO vacio y lo vamos
@@ -59,11 +61,20 @@ public class LiderDao {
                 lider.setSegundoApellido(resultSet.getString("Segundo_Apellido"));
                 lider.setSalario(resultSet.getInt("Salario"));
                 lider.setClasificacion(resultSet.getDouble("Clasificacion"));
+                // Entonces de liness 55 a 60 de cada fila tenemos un objetico y ese objetico lo
+                // agregamos al array list (respuesta)
+                respuesta.add(lider);
             }
+            resultSet.close();
+            statement.close(); // Importante hacer los cierres de resultSet y statement
 
         } catch (SQLException e) {
             System.out.println("Error consultando todos los lideres: " + e);
-
+        } finally {
+            // Siempre debo cerrar la conexion con la DB si se logro
+            if (conexion != null) {
+                conexion.close();
+            }
         }
 
         // Retornar respuesta obtenida tras interfactura con la BD
@@ -73,6 +84,56 @@ public class LiderDao {
 
     // Consultar lider por id
 
+    public Lider consultarLiderID(Integer idLider) throws SQLException {
+        // Preparo la respuesta que solo va a tener un lider
+        Lider respuesta = new Lider();
+        // Preparo la conexion
+        Connection conexion = null;
+        try {
+            // Crear la conexion
+            conexion = JDBCUtilities.getConnection();
+            // Crear objeto a partir de la consulta SQL
+
+            // Opcion 1 armado de consulta
+            PreparedStatement statement = conexion.prepareStatement("SELECT * FROM Lider WHERE ID_LIDER = " + idLider);
+
+            // //Opcion 2 armado de consulta
+            // PreparedStatement statement = conexion.prepareStatement("SELECT * FROM Lider
+            // WHERE ID_Lider = ?"); // El ? es un token para que el reemplaze ese valor
+            // usando el metodo statement.
+            // statement.setInt(1,idLider);
+
+            // Ejecutar la consulta y almacenar la respuesta en estructura de datos tipo
+            // ResultSet (iterador)
+            ResultSet resultSet = statement.executeQuery();
+
+            // Recorrer estilo iterador la estructura de datos que aloja los registros. Se
+            // detiene cuando siguiente retorna falso!
+            if (resultSet.next()) {
+                respuesta.setIdLider(resultSet.getInt("Id_Lider"));
+                respuesta.setNombre(resultSet.getString("Nombre"));
+                respuesta.setPrimerApellido(resultSet.getString("Primer_Apellido"));
+                respuesta.setSegundoApellido(resultSet.getString("Segundo_Apellido"));
+                respuesta.setSalario(resultSet.getInt("Salario"));
+                respuesta.setClasificacion(resultSet.getDouble("Clasificacion"));
+            } else {
+                respuesta = null;
+            }
+            resultSet.close();
+            statement.close(); // Importante hacer los cierres de resultSet y statement
+
+        } catch (SQLException e) {
+            System.out.println("Error consultando lider por ID: " + e);
+        } finally {
+            // Siempre debo cerrar la conexion con la DB si se logro
+            if (conexion != null) {
+                conexion.close();
+            }
+        }
+
+        return respuesta;
+
+    }
     // Insertar o guardar un lider en la BD
 
     // Actualizar un lider
